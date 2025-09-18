@@ -45,47 +45,51 @@ function initMobileMenu() {
     
     if (!menuToggle) return;
     
+    // Remove any existing mobile menu to avoid duplicates
+    const existingMenu = document.querySelector('.mobile-menu');
+    if (existingMenu) {
+        existingMenu.remove();
+    }
+    
+    // Create mobile menu immediately
+    const mobileMenu = document.createElement('div');
+    mobileMenu.className = 'mobile-menu';
+    
+    // Clone navigation links and buttons
+    const linksClone = navLinks.cloneNode(true);
+    const buttonsClone = navButtons.cloneNode(true);
+    
+    // Add close button
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'mobile-menu-close';
+    closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+    
+    // Append elements in the correct order
+    mobileMenu.appendChild(closeBtn);
+    mobileMenu.appendChild(linksClone);
+    mobileMenu.appendChild(buttonsClone);
+    
+    document.body.appendChild(mobileMenu);
+    
+    // Handle menu toggle click
     menuToggle.addEventListener('click', () => {
-        // Create mobile menu if it doesn't exist
-        if (!document.querySelector('.mobile-menu')) {
-            const mobileMenu = document.createElement('div');
-            mobileMenu.className = 'mobile-menu';
-            
-            // Clone navigation links and buttons
-            const linksClone = navLinks.cloneNode(true);
-            const buttonsClone = navButtons.cloneNode(true);
-            
-            mobileMenu.appendChild(linksClone);
-            mobileMenu.appendChild(buttonsClone);
-            
-            // Add close button
-            const closeBtn = document.createElement('button');
-            closeBtn.className = 'mobile-menu-close';
-            closeBtn.innerHTML = '<i class="fas fa-times"></i>';
-            mobileMenu.prepend(closeBtn);
-            
-            document.body.appendChild(mobileMenu);
-            
-            // Handle close button
-            closeBtn.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            });
-            
-            // Handle link clicks (close menu when a link is clicked)
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    document.body.classList.remove('menu-open');
-                });
-            });
-        }
-        
-        // Toggle mobile menu
-        const mobileMenu = document.querySelector('.mobile-menu');
         mobileMenu.classList.toggle('active');
         document.body.classList.toggle('menu-open');
+    });
+    
+    // Handle close button
+    closeBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
+    });
+    
+    // Handle link clicks (close menu when a link is clicked)
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        });
     });
     
     // Add necessary styles for mobile menu
@@ -97,13 +101,13 @@ function initMobileMenu() {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
-                max-width: 350px;
+                width: 90%;
+                max-width: 320px;
                 height: 100vh;
-                background-color: var(--color-bg-dark);
-                z-index: 1001;
-                padding: 2rem;
-                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+                background-color: #121212;
+                z-index: 2000;
+                padding: 4rem 1.5rem 1.5rem;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
                 transition: right 0.3s ease;
                 display: flex;
                 flex-direction: column;
@@ -121,23 +125,66 @@ function initMobileMenu() {
                 right: 1rem;
                 background: none;
                 border: none;
-                color: var(--color-text-primary);
+                color: #ffffff;
                 font-size: 1.5rem;
                 cursor: pointer;
+                width: 44px;
+                height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 50%;
+                z-index: 2001;
+            }
+            
+            .mobile-menu .navbar-links {
+                display: block !important;
+                width: 100%;
             }
             
             .mobile-menu .navbar-links ul {
+                display: flex;
                 flex-direction: column;
                 gap: 1rem;
+                width: 100%;
+            }
+            
+            .mobile-menu .navbar-links a {
+                font-size: 1.2rem;
+                padding: 0.8rem 0;
+                display: block;
+                color: #ffffff;
             }
             
             .mobile-menu .navbar-buttons {
+                display: flex !important;
                 flex-direction: column;
                 gap: 1rem;
+                width: 100%;
+            }
+            
+            .mobile-menu .btn {
+                width: 100%;
+                text-align: center;
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
             }
             
             body.menu-open {
                 overflow: hidden;
+            }
+            
+            /* Add overlay when menu is open */
+            body.menu-open::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 1999;
             }
             
             @media (min-width: 769px) {
@@ -160,16 +207,26 @@ function initPropertyCarousel() {
     const nextButton = document.querySelector('.carousel-next');
     const cards = document.querySelectorAll('.property-card');
     
-    if (!track || !prevButton || !nextButton || cards.length === 0) return;
+    if (!track || cards.length === 0) return;
     
     let currentIndex = 0;
-    let cardWidth = cards[0].offsetWidth + parseInt(window.getComputedStyle(cards[0]).marginRight);
+    const isMobile = window.innerWidth < 768;
+    // For mobile, include the left and right margins
+    let cardWidth = isMobile ? 
+        cards[0].offsetWidth + 2 * parseInt(window.getComputedStyle(cards[0]).marginLeft) : 
+        cards[0].offsetWidth + parseInt(window.getComputedStyle(cards[0]).marginRight);
     let cardsPerView = calculateCardsPerView();
     let maxIndex = Math.max(0, cards.length - cardsPerView);
+    let autoScrollInterval = null;
+    let isHovering = false;
     
     // Handle window resize
     window.addEventListener('resize', () => {
-        cardWidth = cards[0].offsetWidth + parseInt(window.getComputedStyle(cards[0]).marginRight);
+        const isMobile = window.innerWidth < 768;
+        // For mobile, include the left and right margins
+        cardWidth = isMobile ? 
+            cards[0].offsetWidth + 2 * parseInt(window.getComputedStyle(cards[0]).marginLeft) : 
+            cards[0].offsetWidth + parseInt(window.getComputedStyle(cards[0]).marginRight);
         cardsPerView = calculateCardsPerView();
         maxIndex = Math.max(0, cards.length - cardsPerView);
         updateCarouselPosition();
@@ -185,33 +242,115 @@ function initPropertyCarousel() {
     
     // Update carousel position
     function updateCarouselPosition() {
-        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+        // For mobile view, we need to handle the gap differently
+        const isMobile = window.innerWidth < 768;
         
-        // Update button states
-        prevButton.disabled = currentIndex === 0;
-        nextButton.disabled = currentIndex >= maxIndex;
+        // Calculate the full width of each card including margins
+        const cardFullWidth = isMobile ? 
+            cards[0].offsetWidth + 2 * parseInt(window.getComputedStyle(cards[0]).marginLeft) : 
+            cardWidth;
+            
+        const offset = currentIndex * cardFullWidth;
+        track.style.transform = `translateX(-${offset}px)`;
         
-        // Visual feedback for disabled buttons
-        prevButton.style.opacity = prevButton.disabled ? '0.5' : '1';
-        nextButton.style.opacity = nextButton.disabled ? '0.5' : '1';
+        // Update button states if buttons exist
+        if (prevButton && nextButton) {
+            prevButton.disabled = currentIndex === 0;
+            nextButton.disabled = currentIndex >= maxIndex;
+            
+            // Visual feedback for disabled buttons
+            prevButton.style.opacity = prevButton.disabled ? '0.5' : '1';
+            nextButton.style.opacity = nextButton.disabled ? '0.5' : '1';
+        }
+        
+        // Update indicators
+        updateIndicators();
     }
+    
+    // Create indicator dots
+    function createIndicators() {
+        const indicatorsContainer = document.querySelector('.carousel-indicators');
+        if (!indicatorsContainer) return;
+        
+        // Clear existing indicators
+        indicatorsContainer.innerHTML = '';
+        
+        // Calculate how many indicators we need
+        const totalIndicators = maxIndex + 1;
+        
+        // Create indicator dots
+        for (let i = 0; i < totalIndicators; i++) {
+            const indicator = document.createElement('span');
+            indicator.classList.add('carousel-indicator');
+            indicator.dataset.index = i;
+            
+            // Add click event to each indicator
+            indicator.addEventListener('click', () => {
+                stopAutoScroll();
+                currentIndex = i;
+                updateCarouselPosition();
+                setTimeout(startAutoScroll, 5000);
+            });
+            
+            indicatorsContainer.appendChild(indicator);
+        }
+    }
+    
+    // Update active indicator
+    function updateIndicators() {
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        if (!indicators.length) return;
+        
+        indicators.forEach((indicator, index) => {
+            if (index === currentIndex) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        });
+    }
+    
+    // Create indicators
+    createIndicators();
     
     // Initialize position
     updateCarouselPosition();
     
-    // Event listeners for buttons
-    prevButton.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateCarouselPosition();
-        }
+    // Start auto-scrolling
+    startAutoScroll();
+    
+    // Event listeners for buttons (if they exist)
+    if (prevButton && nextButton) {
+        prevButton.addEventListener('click', () => {
+            stopAutoScroll();
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarouselPosition();
+            }
+            // Restart auto-scroll after a delay
+            setTimeout(startAutoScroll, 5000);
+        });
+        
+        nextButton.addEventListener('click', () => {
+            stopAutoScroll();
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+                updateCarouselPosition();
+            }
+            // Restart auto-scroll after a delay
+            setTimeout(startAutoScroll, 5000);
+        });
+    }
+    
+    // Pause auto-scroll on hover
+    track.addEventListener('mouseenter', () => {
+        isHovering = true;
+        stopAutoScroll();
     });
     
-    nextButton.addEventListener('click', () => {
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-            updateCarouselPosition();
-        }
+    track.addEventListener('mouseleave', () => {
+        isHovering = false;
+        startAutoScroll();
     });
     
     // Touch events for mobile swipe
@@ -231,16 +370,44 @@ function initPropertyCarousel() {
         const swipeThreshold = 50;
         if (touchStartX - touchEndX > swipeThreshold) {
             // Swipe left
+            stopAutoScroll();
             if (currentIndex < maxIndex) {
                 currentIndex++;
                 updateCarouselPosition();
             }
+            // Restart auto-scroll after a delay
+            setTimeout(startAutoScroll, 5000);
         } else if (touchEndX - touchStartX > swipeThreshold) {
             // Swipe right
+            stopAutoScroll();
             if (currentIndex > 0) {
                 currentIndex--;
                 updateCarouselPosition();
             }
+            // Restart auto-scroll after a delay
+            setTimeout(startAutoScroll, 5000);
+        }
+    }
+    
+    // Auto-scroll functions
+    function startAutoScroll() {
+        if (autoScrollInterval || isHovering) return;
+        
+        autoScrollInterval = setInterval(() => {
+            if (currentIndex >= maxIndex) {
+                // Reset to beginning when reaching the end
+                currentIndex = 0;
+            } else {
+                currentIndex++;
+            }
+            updateCarouselPosition();
+        }, 4000); // Change slide every 4 seconds
+    }
+    
+    function stopAutoScroll() {
+        if (autoScrollInterval) {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = null;
         }
     }
 }

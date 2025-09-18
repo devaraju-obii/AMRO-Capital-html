@@ -33,7 +33,7 @@
                 <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Developer">
             </div>
             <div class="user-info">
-                <h4>Alex Rodriguez</h4>
+                <h4>Amit Sharma</h4>
                 <p>Senior Developer</p>
                 <span class="user-status online">Online</span>
             </div>
@@ -50,13 +50,7 @@
                     <a href="#"><i class="fas fa-chart-line"></i> Analytics</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fas fa-calendar-alt"></i> Timeline</a>
-                </li>
-                <li>
                     <a href="#"><i class="fas fa-file-invoice-dollar"></i> Financial</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fas fa-users"></i> Team</a>
                 </li>
                 <li>
                     <a href="#"><i class="fas fa-cog"></i> Settings</a>
@@ -73,6 +67,11 @@
     <main class="dashboard-main">
         <!-- Top Navigation -->
         <header class="dashboard-header">
+            <div class="mobile-sidebar-toggle">
+                <button class="btn-sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
             <div class="header-search">
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search projects, reports, etc.">
@@ -88,7 +87,7 @@
                 </button>
                 <div class="header-user">
                     <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Developer">
-                    <span>Alex Rodriguez</span>
+                    <span>Amit Sharma</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
@@ -98,7 +97,7 @@
         <div class="dashboard-content">
             <div class="dashboard-welcome">
                 <div>
-                    <h1>Welcome back, Alex</h1>
+                    <h1>Welcome back, Amit</h1>
                     <p>Here's what's happening with your development projects today.</p>
                 </div>
                 <div class="welcome-actions">
@@ -131,13 +130,13 @@
                     <div class="stat-card-content">
                         <div class="stat-card-info">
                             <h3>Total Revenue</h3>
-                            <p class="stat-value">RS 8.2Cr</p>
+                            <p class="stat-value">₹ 8.2Cr</p>
                             <p class="stat-change positive">
                                 <i class="fas fa-arrow-up"></i> 12.5% from last month
                             </p>
                         </div>
                         <div class="stat-card-icon green">
-                            <i class="fas fa-dollar-sign"></i>
+                            <i class="fas fa-rupee-sign"></i>
                         </div>
                     </div>
                     <div class="stat-card-footer">
@@ -236,6 +235,9 @@
                     <h3>Recent Projects</h3>
                     <button class="btn btn-outline btn-sm">View All</button>
                 </div>
+                <div class="mobile-scroll-indicator">
+                    <span><i class="fas fa-arrows-alt-h"></i> Scroll horizontally to view more</span>
+                </div>
                 <div class="table-responsive">
                     <table class="data-table">
                         <thead>
@@ -259,8 +261,8 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>Manhattan, NY</td>
-                                <td>RS 2.8Cr</td>
+                                <td>Bengaluru, KA</td>
+                                <td>₹ 2.8Cr</td>
                                 <td><span class="status-badge in-progress">In Progress</span></td>
                                 <td>
                                     <div class="progress-bar">
@@ -286,8 +288,8 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>Chicago, IL</td>
-                                <td>RS 4.2Cr</td>
+                                <td>Mumbai, MH</td>
+                                <td>₹ 4.2Cr</td>
                                 <td><span class="status-badge completed">Completed</span></td>
                                 <td>
                                     <div class="progress-bar">
@@ -308,13 +310,13 @@
                                     <div class="project-name">
                                         <div class="project-icon mixed">M</div>
                                         <div>
-                                            <p class="name">Azure Beachfront Estate</p>
+                                            <p class="name">Azure Lakefront Estate</p>
                                             <p class="type">Mixed Use</p>
                                         </div>
                                     </div>
                                 </td>
-                                <td>Malibu, CA</td>
-                                <td>RS 12.8Cr</td>
+                                <td>Goa</td>
+                                <td>₹ 12.8Cr</td>
                                 <td><span class="status-badge in-progress">In Progress</span></td>
                                 <td>
                                     <div class="progress-bar">
@@ -340,8 +342,8 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>Dubai, UAE</td>
-                                <td>RS 4.5Cr</td>
+                                <td>Hyderabad, TS</td>
+                                <td>₹ 4.5Cr</td>
                                 <td><span class="status-badge planning">Planning</span></td>
                                 <td>
                                     <div class="progress-bar">
@@ -367,8 +369,8 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>Singapore</td>
-                                <td>RS 7.2Cr</td>
+                                <td>Delhi NCR</td>
+                                <td>₹ 7.2Cr</td>
                                 <td><span class="status-badge on-hold">On Hold</span></td>
                                 <td>
                                     <div class="progress-bar">
@@ -393,5 +395,6 @@
 
     <!-- JavaScript -->
     <script src="../../js/dashboard.js"></script>
+    <script src="../../js/mobile-menu.js"></script>
 </body>
 </html>

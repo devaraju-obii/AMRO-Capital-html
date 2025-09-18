@@ -19,11 +19,61 @@ document.addEventListener('DOMContentLoaded', function() {
 function initSidebar() {
     const sidebarToggle = document.querySelector('.sidebar-toggle');
     const sidebar = document.querySelector('.sidebar');
+    const dashboardMain = document.querySelector('.dashboard-main');
     
     if (!sidebarToggle || !sidebar) return;
     
-    sidebarToggle.addEventListener('click', () => {
+    // Add overlay for mobile sidebar
+    const overlay = document.createElement('div');
+    overlay.className = 'sidebar-overlay';
+    document.body.appendChild(overlay);
+    
+    // Add overlay styles
+    const overlayStyles = document.createElement('style');
+    overlayStyles.textContent = `
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 90;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        body.sidebar-open {
+            overflow: hidden;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 85%;
+                max-width: 280px;
+            }
+        }
+    `;
+    document.head.appendChild(overlayStyles);
+    
+    sidebarToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
         sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.classList.toggle('sidebar-open');
+    });
+    
+    // Close sidebar when clicking on overlay
+    overlay.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.classList.remove('sidebar-open');
     });
     
     // Close sidebar when clicking outside on mobile
@@ -31,6 +81,8 @@ function initSidebar() {
         if (window.innerWidth < 992) {
             if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
                 sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.classList.remove('sidebar-open');
             }
         }
     });
@@ -39,6 +91,8 @@ function initSidebar() {
     window.addEventListener('resize', () => {
         if (window.innerWidth >= 992) {
             sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.classList.remove('sidebar-open');
         }
     });
 }
@@ -218,7 +272,7 @@ function createBarChart() {
     const data = {
         labels: ['Skyline Residences', 'Horizon Office Tower', 'Azure Beachfront', 'Emerald Heights', 'Pinnacle Business Park'],
         datasets: [{
-            label: 'Revenue (Millions $)',
+            label: 'Revenue (Crores ₹)',
             data: [2.8, 4.2, 12.8, 4.5, 7.2],
             backgroundColor: '#6a5acd',
             borderRadius: 5,
@@ -241,7 +295,7 @@ function createBarChart() {
                     },
                     ticks: {
                         callback: function(value) {
-                            return '$' + value + 'M';
+                            return '₹' + value + 'Cr';
                         }
                     }
                 },
@@ -259,7 +313,7 @@ function createBarChart() {
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            return `Revenue: $${context.parsed.y}M`;
+                            return `Revenue: ₹${context.parsed.y}Cr`;
                         }
                     }
                 }
@@ -302,7 +356,7 @@ function createPerformanceChart() {
                 y: {
                     ticks: {
                         callback: function(value) {
-                            return '$' + value + 'M';
+                            return '₹' + value + 'Cr';
                         }
                     },
                     grid: {
@@ -324,7 +378,7 @@ function createPerformanceChart() {
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            return `Value: $${context.parsed.y}M`;
+                            return `Value: ₹${context.parsed.y}Cr`;
                         }
                     }
                 }
@@ -417,7 +471,7 @@ function createIncomeChart() {
                     },
                     ticks: {
                         callback: function(value) {
-                            return '$' + value.toLocaleString();
+                            return '₹' + value.toLocaleString();
                         }
                     }
                 },
@@ -435,7 +489,7 @@ function createIncomeChart() {
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            return `Income: $${context.parsed.y.toLocaleString()}`;
+                            return `Income: ₹${context.parsed.y.toLocaleString()}`;
                         }
                     }
                 }
@@ -617,6 +671,7 @@ function initNotifications() {
                     border: 1px solid #252535;
                     border-radius: 10px;
                     width: 350px;
+                    max-width: calc(100vw - 3rem);
                     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
                     z-index: 100;
                     opacity: 0;
@@ -831,6 +886,7 @@ function initNotifications() {
                     border: 1px solid #252535;
                     border-radius: 10px;
                     width: 350px;
+                    max-width: calc(100vw - 3rem);
                     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
                     z-index: 100;
                     opacity: 0;

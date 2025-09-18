@@ -33,7 +33,7 @@
                 <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Investor">
             </div>
             <div class="user-info">
-                <h4>Sarah Johnson</h4>
+                <h4>Priya Sharma</h4>
                 <p>Premium Investor</p>
                 <span class="user-status online">Online</span>
             </div>
@@ -42,12 +42,6 @@
             <ul>
                 <li class="active">
                     <a href="#"><i class="fas fa-th-large"></i> Dashboard</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fas fa-chart-pie"></i> Portfolio</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fas fa-search-dollar"></i> Opportunities</a>
                 </li>
                 <li>
                     <a href="#"><i class="fas fa-chart-line"></i> Performance</a>
@@ -73,6 +67,11 @@
     <main class="dashboard-main">
         <!-- Top Navigation -->
         <header class="dashboard-header">
+            <div class="mobile-sidebar-toggle">
+                <button class="btn-sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
             <div class="header-search">
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search investments, properties, etc.">
@@ -88,7 +87,7 @@
                 </button>
                 <div class="header-user">
                     <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Investor">
-                    <span>Sarah Johnson</span>
+                    <span>Priya Sharma</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
@@ -98,7 +97,7 @@
         <div class="dashboard-content">
             <div class="dashboard-welcome">
                 <div>
-                    <h1>Welcome back, Sarah</h1>
+                    <h1>Welcome back, Priya</h1>
                     <p>Here's an overview of your investment portfolio performance.</p>
                 </div>
                 <div class="welcome-actions">
@@ -112,10 +111,10 @@
                 <div class="portfolio-value">
                     <div class="value-card">
                         <h3>Total Portfolio Value</h3>
-                        <p class="value">4,850,000 RS</p>
+                        <p class="value">₹ 4,85,00,000</p>
                         <div class="value-change positive">
                             <i class="fas fa-arrow-up"></i>
-                            <span>+12.4% (532,000 RS)</span>
+                            <span>+12.4% (₹ 53,20,000)</span>
                             <span class="period">This Year</span>
                         </div>
                     </div>
@@ -137,7 +136,7 @@
                         </div>
                         <div class="metric-content">
                             <p class="metric-label">Monthly Income</p>
-                            <p class="metric-value">32,450 RS</p>
+                            <p class="metric-value">₹ 32,450</p>
                             <p class="metric-change positive">+5.8% from last month</p>
                         </div>
                     </div>
@@ -219,6 +218,9 @@
                     <h3>Your Investment Properties</h3>
                     <button class="btn btn-outline btn-sm">View All</button>
                 </div>
+                <div class="mobile-scroll-indicator">
+                    <span><i class="fas fa-arrows-alt-h"></i> Scroll horizontally to view more</span>
+                </div>
                 <div class="table-responsive">
                     <table class="data-table">
                         <thead>
@@ -243,9 +245,9 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>Dubai, UAE</td>
-                                <td>RS 1,200,000</td>
-                                <td>RS 1,450,000</td>
+                                <td>Bengaluru</td>
+                                <td>₹ 1,20,00,0</td>
+                                <td>₹ 1,45,00,0</td>
                                 <td><span class="roi-badge high">18.2%</span></td>
                                 <td>
                                     <div class="progress-bar">
@@ -271,9 +273,9 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>Manhattan, NY</td>
-                                <td>RS 950,000</td>
-                                <td>RS 1,120,000</td>
+                                <td>Mumbai</td>
+                                <td>₹ 95,00,00</td>
+                                <td>₹ 1,12,00,0</td>
                                 <td><span class="roi-badge high">15.2%</span></td>
                                 <td>
                                     <div class="progress-bar">
@@ -294,14 +296,14 @@
                                     <div class="property-name">
                                         <img src="https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1325&q=80" alt="Property" class="property-img">
                                         <div>
-                                            <p class="name">Azure Beachfront Estate</p>
-                                            <p class="type">Beachfront Property</p>
+                                            <p class="name">Azure Lakefront Estate</p>
+                                            <p class="type">Lakefront Property</p>
                                         </div>
                                     </div>
                                 </td>
-                                <td>Malibu, CA</td>
-                                <td>RS 2,500,000</td>
-                                <td>RS 3,050,000</td>
+                                <td>Goa</td>
+                                <td>₹ 2,50,00,0</td>
+                                <td>₹ 3,05,00,0</td>
                                 <td><span class="roi-badge very-high">22.0%</span></td>
                                 <td>
                                     <div class="progress-bar">
@@ -327,9 +329,9 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>Singapore</td>
-                                <td>RS 1,800,000</td>
-                                <td>RS 2,050,000</td>
+                                <td>Chennai</td>
+                                <td>₹ 1,80,00,0</td>
+                                <td>₹ 2,05,00,0</td>
                                 <td><span class="roi-badge medium">13.9%</span></td>
                                 <td>
                                     <div class="progress-bar">
@@ -355,9 +357,9 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>Hamptons, NY</td>
-                                <td>RS 3,200,000</td>
-                                <td>RS 3,680,000</td>
+                                <td>Pune</td>
+                                <td>₹ 3,20,00,0</td>
+                                <td>₹ 3,68,00,0</td>
                                 <td><span class="roi-badge medium">15.0%</span></td>
                                 <td>
                                     <div class="progress-bar">
@@ -391,12 +393,12 @@
                             <div class="opportunity-tag">Premium</div>
                         </div>
                         <div class="opportunity-details">
-                            <h4>The Ritz Residences</h4>
-                            <p class="location"><i class="fas fa-map-marker-alt"></i> London, UK</p>
+                            <h4>The Prestige Residences</h4>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> Bengaluru, KA</p>
                             <div class="opportunity-specs">
                                 <div class="spec">
                                     <span class="spec-label">Investment</span>
-                                    <span class="spec-value">RS 1.2L - RS 3.5L</span>
+                                    <span class="spec-value">₹ 1.2Cr - ₹ 3.5Cr</span>
                                 </div>
                                 <div class="spec">
                                     <span class="spec-label">Projected ROI</span>
@@ -410,13 +412,13 @@
                             <div class="opportunity-progress">
                                 <div class="progress-info">
                                     <span>Funding Progress</span>
-                                    <span>68% of RS 25L</span>
+                                    <span>68% of ₹ 25Cr</span>
                                 </div>
                                 <div class="progress-bar">
                                     <div class="progress" style="width: 68%"></div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary btn-block">View Opportunity</button>
+                            <button class="btn btn-primary btn-block yellow">View Details</button>
                         </div>
                     </div>
                     <div class="opportunity-card">
@@ -426,11 +428,11 @@
                         </div>
                         <div class="opportunity-details">
                             <h4>Vineyard Estates</h4>
-                            <p class="location"><i class="fas fa-map-marker-alt"></i> Napa Valley, CA</p>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> Nashik, MH</p>
                             <div class="opportunity-specs">
                                 <div class="spec">
                                     <span class="spec-label">Investment</span>
-                                    <span class="spec-value">RS 2.5L - RS 5.8L</span>
+                                    <span class="spec-value">₹ 2.5Cr - ₹ 5.8Cr</span>
                                 </div>
                                 <div class="spec">
                                     <span class="spec-label">Projected ROI</span>
@@ -444,13 +446,13 @@
                             <div class="opportunity-progress">
                                 <div class="progress-info">
                                     <span>Funding Progress</span>
-                                    <span>42% of RS 40L</span>
+                                    <span>42% of ₹ 40Cr</span>
                                 </div>
                                 <div class="progress-bar">
                                     <div class="progress" style="width: 42%"></div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary btn-block">View Opportunity</button>
+                            <button class="btn btn-primary btn-block purple">Interested</button>
                         </div>
                     </div>
                     <div class="opportunity-card">
@@ -459,12 +461,12 @@
                             <div class="opportunity-tag">Featured</div>
                         </div>
                         <div class="opportunity-details">
-                            <h4>Alpine Chalets</h4>
-                            <p class="location"><i class="fas fa-map-marker-alt"></i> Aspen, CO</p>
+                            <h4>Mountain Chalets</h4>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> Shimla, HP</p>
                             <div class="opportunity-specs">
                                 <div class="spec">
                                     <span class="spec-label">Investment</span>
-                                    <span class="spec-value">RS 1.8L - RS 4.2L</span>
+                                    <span class="spec-value">₹ 1.8Cr - ₹ 4.2Cr</span>
                                 </div>
                                 <div class="spec">
                                     <span class="spec-label">Projected ROI</span>
@@ -478,13 +480,13 @@
                             <div class="opportunity-progress">
                                 <div class="progress-info">
                                     <span>Funding Progress</span>
-                                    <span>85% of RS 30L</span>
+                                    <span>85% of ₹ 30Cr</span>
                                 </div>
                                 <div class="progress-bar">
                                     <div class="progress" style="width: 85%"></div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary btn-block">View Opportunity</button>
+                            <button class="btn btn-primary btn-block yellow">View Details</button>
                         </div>
                     </div>
                 </div>
@@ -494,5 +496,6 @@
 
     <!-- JavaScript -->
     <script src="../../js/dashboard.js"></script>
+    <script src="../../js/mobile-menu.js"></script>
 </body>
 </html>
