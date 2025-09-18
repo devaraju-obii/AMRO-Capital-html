@@ -1,0 +1,26 @@
+{
+  "name": "anmol-real-estate",
+  "version": "1.0.0",
+  "description": "Premium real estate investment platform with dark theme design",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "real estate",
+    "investment",
+    "dashboard",
+    "dark theme"
+  ],
+  "author": "Anmol Real Estate",
+  "license": "ISC",
+  "dependencies": {
+    "http": "0.0.1-security",
+    "fs": "0.0.1-security",
+    "path": "0.0.1-security"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

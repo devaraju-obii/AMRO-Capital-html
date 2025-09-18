@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Dashboard | AMRO Capital</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Libre+Franklin:wght@300;400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="../../index.html" class="sidebar-logo">
+                <img src="../../images/logos/AMRO Logo (Blue).svg" alt="AMRO Capital">
+                <span>AMRO</span>
+            </a>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div class="sidebar-user">
+            <div class="user-avatar">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Investor">
+            </div>
+            <div class="user-info">
+                <h4>Sarah Johnson</h4>
+                <p>Premium Investor</p>
+                <span class="user-status online">Online</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active">
+                    <a href="#"><i class="fas fa-th-large"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-chart-pie"></i> Portfolio</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-search-dollar"></i> Opportunities</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-chart-line"></i> Performance</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-file-invoice-dollar"></i> Financials</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-handshake"></i> Transactions</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="../../index.html"><i class="fas fa-home"></i> Back to Website</a>
+            <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <!-- Top Navigation -->
+        <header class="dashboard-header">
+            <div class="header-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search investments, properties, etc.">
+            </div>
+            <div class="header-actions">
+                <button class="notification-btn">
+                    <i class="far fa-bell"></i>
+                    <span class="badge">2</span>
+                </button>
+                <button class="message-btn">
+                    <i class="far fa-envelope"></i>
+                    <span class="badge">3</span>
+                </button>
+                <div class="header-user">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Investor">
+                    <span>Sarah Johnson</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <div class="dashboard-welcome">
+                <div>
+                    <h1>Welcome back, Sarah</h1>
+                    <p>Here's an overview of your investment portfolio performance.</p>
+                </div>
+                <div class="welcome-actions">
+                    <button class="btn btn-outline"><i class="fas fa-download"></i> Export Report</button>
+                    <button class="btn btn-primary"><i class="fas fa-plus"></i> New Investment</button>
+                </div>
+            </div>
+
+            <!-- Portfolio Summary -->
+            <div class="portfolio-summary">
+                <div class="portfolio-value">
+                    <div class="value-card">
+                        <h3>Total Portfolio Value</h3>
+                        <p class="value">4,850,000 RS</p>
+                        <div class="value-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+12.4% (532,000 RS)</span>
+                            <span class="period">This Year</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-metrics">
+                    <div class="metric-card">
+                        <div class="metric-icon blue">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="metric-content">
+                            <p class="metric-label">Avg. Annual ROI</p>
+                            <p class="metric-value">18.5%</p>
+                            <p class="metric-change positive">+2.3% from last year</p>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon green">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="metric-content">
+                            <p class="metric-label">Monthly Income</p>
+                            <p class="metric-value">32,450 RS</p>
+                            <p class="metric-change positive">+5.8% from last month</p>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon purple">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="metric-content">
+                            <p class="metric-label">Properties</p>
+                            <p class="metric-value">8</p>
+                            <p class="metric-change neutral">No change</p>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon orange">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <div class="metric-content">
+                            <p class="metric-label">Markets</p>
+                            <p class="metric-value">5</p>
+                            <p class="metric-change positive">+1 from last year</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <!-- Line Chart -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Portfolio Performance</h3>
+                        <div class="chart-actions">
+                            <button class="btn-chart-filter active">1Y</button>
+                            <button class="btn-chart-filter">3Y</button>
+                            <button class="btn-chart-filter">5Y</button>
+                            <button class="btn-chart-filter">All</button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Pie Chart -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Portfolio Allocation</h3>
+                        <div class="chart-actions">
+                            <button class="btn-chart-filter active">By Type</button>
+                            <button class="btn-chart-filter">By Location</button>
+                            <button class="btn-chart-filter">By Risk</button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="allocationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bar Chart -->
+            <div class="chart-container full-width">
+                <div class="chart-header">
+                    <h3>Monthly Rental Income</h3>
+                    <div class="chart-actions">
+                        <button class="btn-chart-filter active">2025</button>
+                        <button class="btn-chart-filter">2024</button>
+                        <button class="btn-chart-filter">2023</button>
+                    </div>
+                </div>
+                <div class="chart-body">
+                    <canvas id="incomeChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Investment Properties Table -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Your Investment Properties</h3>
+                    <button class="btn btn-outline btn-sm">View All</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Location</th>
+                                <th>Investment</th>
+                                <th>Current Value</th>
+                                <th>ROI</th>
+                                <th>Occupancy</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="property-name">
+                                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1475&q=80" alt="Property" class="property-img">
+                                        <div>
+                                            <p class="name">Emerald Heights Villa</p>
+                                            <p class="type">Luxury Villa</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Dubai, UAE</td>
+                                <td>RS 1,200,000</td>
+                                <td>RS 1,450,000</td>
+                                <td><span class="roi-badge high">18.2%</span></td>
+                                <td>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 100%"></div>
+                                        <span>100%</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-chart-line"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-ellipsis-v"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="property-name">
+                                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Property" class="property-img">
+                                        <div>
+                                            <p class="name">Skyline Residences</p>
+                                            <p class="type">Luxury Apartment</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Manhattan, NY</td>
+                                <td>RS 950,000</td>
+                                <td>RS 1,120,000</td>
+                                <td><span class="roi-badge high">15.2%</span></td>
+                                <td>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 92%"></div>
+                                        <span>92%</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-chart-line"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-ellipsis-v"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="property-name">
+                                        <img src="https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1325&q=80" alt="Property" class="property-img">
+                                        <div>
+                                            <p class="name">Azure Beachfront Estate</p>
+                                            <p class="type">Beachfront Property</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Malibu, CA</td>
+                                <td>RS 2,500,000</td>
+                                <td>RS 3,050,000</td>
+                                <td><span class="roi-badge very-high">22.0%</span></td>
+                                <td>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 100%"></div>
+                                        <span>100%</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-chart-line"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-ellipsis-v"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="property-name">
+                                        <img src="https://images.unsplash.com/photo-1577415124269-fc1140a69e91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Property" class="property-img">
+                                        <div>
+                                            <p class="name">Marina Bay Residences</p>
+                                            <p class="type">Waterfront Condo</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Singapore</td>
+                                <td>RS 1,800,000</td>
+                                <td>RS 2,050,000</td>
+                                <td><span class="roi-badge medium">13.9%</span></td>
+                                <td>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 95%"></div>
+                                        <span>95%</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-chart-line"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-ellipsis-v"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="property-name">
+                                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Property" class="property-img">
+                                        <div>
+                                            <p class="name">Hamptons Estate</p>
+                                            <p class="type">Luxury Villa</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Hamptons, NY</td>
+                                <td>RS 3,200,000</td>
+                                <td>RS 3,680,000</td>
+                                <td><span class="roi-badge medium">15.0%</span></td>
+                                <td>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 85%"></div>
+                                        <span>85%</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-chart-line"></i></button>
+                                        <button class="btn-icon"><i class="fas fa-ellipsis-v"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Investment Opportunities -->
+            <div class="opportunities-section">
+                <div class="section-header">
+                    <h3>Recommended Investment Opportunities</h3>
+                    <button class="btn btn-outline btn-sm">View All</button>
+                </div>
+                <div class="opportunities-grid">
+                    <div class="opportunity-card">
+                        <div class="opportunity-image">
+                            <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1296&q=80" alt="Opportunity">
+                            <div class="opportunity-tag">Premium</div>
+                        </div>
+                        <div class="opportunity-details">
+                            <h4>The Ritz Residences</h4>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> London, UK</p>
+                            <div class="opportunity-specs">
+                                <div class="spec">
+                                    <span class="spec-label">Investment</span>
+                                    <span class="spec-value">RS 1.2L - RS 3.5L</span>
+                                </div>
+                                <div class="spec">
+                                    <span class="spec-label">Projected ROI</span>
+                                    <span class="spec-value">19.5%</span>
+                                </div>
+                                <div class="spec">
+                                    <span class="spec-label">Type</span>
+                                    <span class="spec-value">Luxury Apartments</span>
+                                </div>
+                            </div>
+                            <div class="opportunity-progress">
+                                <div class="progress-info">
+                                    <span>Funding Progress</span>
+                                    <span>68% of RS 25L</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 68%"></div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block">View Opportunity</button>
+                        </div>
+                    </div>
+                    <div class="opportunity-card">
+                        <div class="opportunity-image">
+                            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Opportunity">
+                            <div class="opportunity-tag">Exclusive</div>
+                        </div>
+                        <div class="opportunity-details">
+                            <h4>Vineyard Estates</h4>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> Napa Valley, CA</p>
+                            <div class="opportunity-specs">
+                                <div class="spec">
+                                    <span class="spec-label">Investment</span>
+                                    <span class="spec-value">RS 2.5L - RS 5.8L</span>
+                                </div>
+                                <div class="spec">
+                                    <span class="spec-label">Projected ROI</span>
+                                    <span class="spec-value">21.2%</span>
+                                </div>
+                                <div class="spec">
+                                    <span class="spec-label">Type</span>
+                                    <span class="spec-value">Vineyard Villas</span>
+                                </div>
+                            </div>
+                            <div class="opportunity-progress">
+                                <div class="progress-info">
+                                    <span>Funding Progress</span>
+                                    <span>42% of RS 40L</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 42%"></div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block">View Opportunity</button>
+                        </div>
+                    </div>
+                    <div class="opportunity-card">
+                        <div class="opportunity-image">
+                            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Opportunity">
+                            <div class="opportunity-tag">Featured</div>
+                        </div>
+                        <div class="opportunity-details">
+                            <h4>Alpine Chalets</h4>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> Aspen, CO</p>
+                            <div class="opportunity-specs">
+                                <div class="spec">
+                                    <span class="spec-label">Investment</span>
+                                    <span class="spec-value">RS 1.8L - RS 4.2L</span>
+                                </div>
+                                <div class="spec">
+                                    <span class="spec-label">Projected ROI</span>
+                                    <span class="spec-value">17.8%</span>
+                                </div>
+                                <div class="spec">
+                                    <span class="spec-label">Type</span>
+                                    <span class="spec-value">Ski Chalets</span>
+                                </div>
+                            </div>
+                            <div class="opportunity-progress">
+                                <div class="progress-info">
+                                    <span>Funding Progress</span>
+                                    <span>85% of RS 30L</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block">View Opportunity</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="../../js/dashboard.js"></script>
+</body>
+</html>
