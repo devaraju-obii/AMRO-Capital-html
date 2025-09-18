@@ -10,6 +10,21 @@ document.addEventListener('DOMContentLoaded', function() {
     initCharts();
     initDropdowns();
     initNotifications();
+    
+    // Add resize event listener to update charts when window size changes
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            // Redraw charts that need spacing adjustments
+            if (document.getElementById('barChart')) {
+                createBarChart();
+            }
+            if (document.getElementById('incomeChart')) {
+                createIncomeChart();
+            }
+        }, 250); // Debounce to avoid excessive redraws
+    });
 });
 
 /**
@@ -269,6 +284,9 @@ function createPieChart() {
 function createBarChart() {
     const ctx = document.getElementById('barChart').getContext('2d');
     
+    // Check if we're on mobile
+    const isMobile = window.innerWidth < 768;
+    
     const data = {
         labels: ['Skyline Residences', 'Horizon Office Tower', 'Azure Beachfront', 'Emerald Heights', 'Pinnacle Business Park'],
         datasets: [{
@@ -276,7 +294,8 @@ function createBarChart() {
             data: [2.8, 4.2, 12.8, 4.5, 7.2],
             backgroundColor: '#6a5acd',
             borderRadius: 5,
-            barThickness: 30
+            barThickness: isMobile ? 18 : 30, // Thinner bars on mobile
+            maxBarThickness: 30
         }]
     };
     
@@ -286,6 +305,8 @@ function createBarChart() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            barPercentage: isMobile ? 0.6 : 0.9, // Add space between bars on mobile
+            categoryPercentage: isMobile ? 0.7 : 0.9, // Add more space between categories on mobile
             scales: {
                 y: {
                     beginAtZero: true,
@@ -445,6 +466,9 @@ function createAllocationChart() {
 function createIncomeChart() {
     const ctx = document.getElementById('incomeChart').getContext('2d');
     
+    // Check if we're on mobile
+    const isMobile = window.innerWidth < 768;
+    
     const data = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
         datasets: [{
@@ -452,7 +476,8 @@ function createIncomeChart() {
             data: [28500, 29200, 30100, 30800, 31200, 31500, 32000, 32200, 32450],
             backgroundColor: '#6a5acd',
             borderRadius: 5,
-            barThickness: 30
+            barThickness: isMobile ? 18 : 30, // Thinner bars on mobile
+            maxBarThickness: 30
         }]
     };
     
@@ -462,6 +487,8 @@ function createIncomeChart() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            barPercentage: isMobile ? 0.6 : 0.9, // Add space between bars on mobile
+            categoryPercentage: isMobile ? 0.7 : 0.9, // Add more space between categories on mobile
             scales: {
                 y: {
                     beginAtZero: true,

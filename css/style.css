@@ -97,12 +97,12 @@ img {
 
 /* Section Styles */
 section {
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-md) 0;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .section-header h2 {
@@ -368,7 +368,7 @@ p {
 
 /* ===== PROPERTIES SECTION ===== */
 .properties-section {
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-md);
 }
 
 .property-carousel {
@@ -547,7 +547,7 @@ p {
 /* ===== ABOUT SECTION ===== */
 .about-section {
     background-color: var(--color-bg-card);
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-md);
 }
 
 .about-content {
@@ -595,7 +595,7 @@ p {
 
 /* ===== PARTNERS SECTION ===== */
 .partners-section {
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-md);
 }
 
 .partners-grid {
@@ -651,7 +651,7 @@ p {
 /* ===== TESTIMONIALS SECTION ===== */
 .testimonials-section {
     background-color: var(--color-bg-card);
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-md);
 }
 
 .testimonials-container {
@@ -1068,6 +1068,15 @@ body.menu-open::before {
         font-size: 2rem;
     }
     
+    /* Reduce spacing in mobile view */
+    section {
+        padding: var(--spacing-sm) 0;
+    }
+    
+    .section-header {
+        margin-bottom: var(--spacing-sm);
+    }
+    
     .property-card {
         flex: 0 0 calc(100% - 2rem);
         min-width: calc(100% - 2rem);
@@ -1156,6 +1165,20 @@ body.menu-open::before {
 }
 
 @media (max-width: 480px) {
+    /* Further reduce spacing on very small screens */
+    section {
+        padding: 1.5rem 0;
+    }
+    
+    .section-header {
+        margin-bottom: 1rem;
+    }
+    
+    .about-content,
+    .partners-grid,
+    .testimonials-container {
+        gap: 1rem;
+    }
     /* Ensure phone number stays on one line */
     .phone-number {
         white-space: nowrap;
